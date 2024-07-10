@@ -19,7 +19,7 @@ image_files = [
 def get_keypoints(image_file):
     results = model(image_file, save_conf=True)
     keypoints = results[0].keypoints
-    return keypoints.data[0] if keypoints is not None else None
+    return keypoints.data[0].cpu().numpy() if keypoints is not None else None
 
 # キーポイント間の差異を計算する関数
 def calculate_difference(kp1, kp2):
